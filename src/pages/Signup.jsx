@@ -20,7 +20,7 @@ const Signup = () => {
               <img src={LogoLight} alt="Logo light" className="mx-auto h-[24px] hidden dark:block" />
             </Link>
 
-            <h5 className="my-6 text-xl font-semibold text-center">Signup</h5>
+            <h5 className="my-6 text-xl font-semibold text-center text-white">Inscription</h5>
 
             <form className="space-y-4">
               <div>
