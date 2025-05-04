@@ -90,9 +90,9 @@ const Signup = () => {
                   className="size-4 me-2 accent-green-600 border border-gray-300 dark:border-gray-600"
                 />
                 <label htmlFor="acceptTandC" className="text-sm text-slate-600 dark:text-slate-400">
-                  I Accept{' '}
+                  J'accepte{' '}
                   <Link to="/terms" className="text-emerald-600 hover:underline">
-                    Terms And Condition
+                    les Termes et Conditions
                   </Link>
                 </label>
               </div>
