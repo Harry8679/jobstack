@@ -1,10 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogoDark from '../assets/images/logo-dark.png';
 import LogoLight from '../assets/images/logo-light.png';
 import bg3 from '../assets/images/hero/bg3.jpg';
 
 const Signup = () => {
+  const [formData, setFormData] = useState({
+    nom: '',
+    prenom: '',
+    telephone: '',
+    password: '',
+    confirmPassword: '',
+    accept: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { id, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [id]: type === 'checkbox' ? checked : value,
+    });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.nom) newErrors.nom = 'Nom requis';
+    if (!formData.prenom) newErrors.prenom = 'Prénom requis';
+    if (!formData.telephone) newErrors.telephone = 'Téléphone requis';
+    if (!formData.password) newErrors.password = 'Mot de passe requis';
+    if (!formData.confirmPassword) newErrors.confirmPassword = 'Confirmation requise';
+    if (formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword) {
+      newErrors.passwordMatch = 'Les mots de passe ne correspondent pas';
+    }
+    if (!formData.accept) newErrors.accept = 'Vous devez accepter les conditions';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      alert('Inscription réussie !');
+      // Ici, tu peux envoyer les données vers ton backend.
+    }
+  };
+
+  const getInputClass = (field, matchCheck = false) => {
+    if (matchCheck && formData.password && formData.confirmPassword) {
+      return formData.password === formData.confirmPassword
+        ? 'border-green-500'
+        : 'border-red-500';
+    }
+
+    return errors[field] ? 'border-red-500' : 'border-gray-300 dark:border-gray-700';
+  };
+
   return (
     <section
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-no-repeat bg-center bg-cover"
@@ -22,74 +76,68 @@ const Signup = () => {
 
             <h5 className="my-6 text-xl font-semibold text-center text-white">Inscription</h5>
 
-            <form className="space-y-4">
-              <div>
-                <label htmlFor="RegisterName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Nom :
-                </label>
-                <input
-                  id="RegisterName"
-                  type="text"
-                  placeholder="ANGUILET"
-                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                />
-              </div>
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              {[
+                { id: 'nom', label: 'Nom :', placeholder: 'ANGUILET' },
+                { id: 'prenom', label: 'Prénom :', placeholder: 'Thomas' },
+                { id: 'telephone', label: 'Numéro de téléphone :', placeholder: '+24166626745' },
+              ].map(({ id, label, placeholder }) => (
+                <div key={id}>
+                  <label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {label}
+                  </label>
+                  <input
+                    id={id}
+                    type="text"
+                    placeholder={placeholder}
+                    value={formData[id]}
+                    onChange={handleChange}
+                    className={`mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${getInputClass(id)}`}
+                  />
+                  {errors[id] && <p className="text-xs text-red-500 mt-1">{errors[id]}</p>}
+                </div>
+              ))}
 
               <div>
-                <label htmlFor="RegisterName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Prénom :
-                </label>
-                <input
-                  id="RegisterName"
-                  type="text"
-                  placeholder="Thomas"
-                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="RegisterEmail" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Numéro de téléphone :
-                </label>
-                <input
-                  id="RegisterEmail"
-                  type="text"
-                  placeholder="+24166626745"
-                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="RegisterPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Mot de passe:
                 </label>
                 <input
-                  id="RegisterPassword"
+                  id="password"
                   type="password"
                   placeholder="Renseigner votre mot de passe"
-                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className={`mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${getInputClass('password', true)}`}
                 />
               </div>
 
               <div>
-                <label htmlFor="RegisterPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Confirmer le mot de passe:
                 </label>
                 <input
-                  id="RegisterPassword"
+                  id="confirmPassword"
                   type="password"
                   placeholder="Veuillez confirmer votre mot de passe"
-                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className={`mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${getInputClass('confirmPassword', true)}`}
                 />
+                {errors.passwordMatch && (
+                  <p className="text-xs text-red-500 mt-1">{errors.passwordMatch}</p>
+                )}
               </div>
 
               <div className="flex items-center">
                 <input
-                  id="acceptTandC"
+                  id="accept"
                   type="checkbox"
-                  className="size-4 me-2 accent-green-600 border border-gray-300 dark:border-gray-600"
+                  checked={formData.accept}
+                  onChange={handleChange}
+                  className={`size-4 me-2 accent-green-600 border ${errors.accept ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}`}
                 />
-                <label htmlFor="acceptTandC" className="text-sm text-slate-600 dark:text-slate-400">
+                <label htmlFor="accept" className="text-sm text-slate-600 dark:text-slate-400">
                   J'accepte{' '}
                   <Link to="/terms" className="text-emerald-600 hover:underline">
                     les Termes et Conditions
