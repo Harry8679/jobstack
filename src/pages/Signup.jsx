@@ -66,7 +66,7 @@ const Signup = () => {
                 <input
                   id="RegisterPassword"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Renseigner votre mot de passe"
                   className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
@@ -78,7 +78,7 @@ const Signup = () => {
                 <input
                   id="RegisterPassword"
                   type="password"
-                  placeholder="Password"
+                  placeholder="Veuillez confirmer votre mot de passe"
                   className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
