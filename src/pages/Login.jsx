@@ -14,7 +14,7 @@ const Login = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900"></div>
 
       <div className="container relative z-10">
-        <div className="max-w-md w-full mx-auto relative overflow-hidden bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
+        <div className="max-w-sm mx-auto relative overflow-hidden bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
             <div className="p-6">
               <Link to="/">
                 <img src={LogoDark} alt="Logo" className="mx-auto h-[24px] block dark:hidden" />
