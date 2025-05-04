@@ -25,31 +25,55 @@ const Signup = () => {
             <form className="space-y-4">
               <div>
                 <label htmlFor="RegisterName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Your Name:
+                  Nom :
                 </label>
                 <input
                   id="RegisterName"
                   type="text"
-                  placeholder="Harry"
+                  placeholder="ANGUILET"
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="RegisterName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Prénom :
+                </label>
+                <input
+                  id="RegisterName"
+                  type="text"
+                  placeholder="Thomas"
                   className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
 
               <div>
                 <label htmlFor="RegisterEmail" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Email Address:
+                  Numéro de téléphone :
                 </label>
                 <input
                   id="RegisterEmail"
-                  type="email"
-                  placeholder="name@example.com"
+                  type="text"
+                  placeholder="+24166626745"
                   className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 />
               </div>
 
               <div>
                 <label htmlFor="RegisterPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Password:
+                  Mot de passe:
+                </label>
+                <input
+                  id="RegisterPassword"
+                  type="password"
+                  placeholder="Password"
+                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="RegisterPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Confirmer le mot de passe:
                 </label>
                 <input
                   id="RegisterPassword"
