@@ -1,7 +1,7 @@
 const Signup = () => {
     return (
       <h1 class="text-3xl font-bold underline">
-          Sign Up!
+          Sign Up
       </h1>
     )
   }
