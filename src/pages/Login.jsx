@@ -52,7 +52,7 @@ const Login = () => {
 
                   <div className="text-center">
                     <span className="text-slate-400 me-2">Don't have an account?</span>
-                    <Link to="/signup" className="text-slate-900 dark:text-white font-bold">Sign Up</Link>
+                    <Link to="/inscription" className="text-slate-900 dark:text-white font-bold">Sign Up</Link>
                   </div>
                 </div>
               </form>
