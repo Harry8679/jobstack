@@ -1,10 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogoDark from '../assets/images/logo-dark.png';
 import LogoLight from '../assets/images/logo-light.png';
 import bg3 from '../assets/images/hero/bg3.jpg';
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    telephone: '',
+    password: '',
+    remember: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { id, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [id]: type === 'checkbox' ? checked : value,
+    });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.telephone) newErrors.telephone = 'Numéro requis';
+    if (!formData.password) newErrors.password = 'Mot de passe requis';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const getInputClass = (field) =>
+    `mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 ${
+      errors[field] ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+    }`;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      alert('Connexion réussie !');
+      // Ici tu peux appeler ton API
+    }
+  };
+
   return (
     <section
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-no-repeat bg-center bg-cover"
@@ -22,35 +59,44 @@ const Login = () => {
 
             <h5 className="my-6 text-xl text-white font-semibold text-center">Connexion</h5>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="LoginEmail" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="telephone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Numéro de téléphone:
                 </label>
                 <input
-                  id="LoginEmail"
+                  id="telephone"
                   type="text"
+                  value={formData.telephone}
+                  onChange={handleChange}
                   placeholder="+24166626745"
-                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  className={getInputClass('telephone')}
                 />
+                {errors.telephone && <p className="text-xs text-red-500 mt-1">{errors.telephone}</p>}
               </div>
 
               <div>
-                <label htmlFor="LoginPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Mot de passe:
                 </label>
                 <input
-                  id="LoginPassword"
+                  id="password"
                   type="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   placeholder="Renseigner votre mot de passe"
-                  className="mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-slate-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  className={getInputClass('password')}
                 />
+                {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password}</p>}
               </div>
 
               <div className="flex items-center justify-between">
                 <label className="inline-flex items-center">
                   <input
+                    id="remember"
                     type="checkbox"
+                    checked={formData.remember}
+                    onChange={handleChange}
                     className="form-checkbox text-emerald-600 dark:bg-slate-800"
                   />
                   <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
