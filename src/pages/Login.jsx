@@ -54,11 +54,11 @@ const Login = () => {
                     className="form-checkbox text-emerald-600 dark:bg-slate-800"
                   />
                   <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
-                    Remember me
+                    Se souvenir de moi
                   </span>
                 </label>
                 <Link to="/reset-password" className="text-sm text-emerald-600 hover:underline">
-                  Forgot password?
+                  Mot de passe oublié?
                 </Link>
               </div>
 
@@ -66,13 +66,13 @@ const Login = () => {
                 type="submit"
                 className="w-full py-2 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-md transition duration-150"
               >
-                Login / Sign in
+                Connexion
               </button>
 
               <p className="text-center text-sm text-gray-600 dark:text-gray-400">
-                Don't have an account?{' '}
+                Vous n'avez pas de compte ?{' '}
                 <Link to="/inscription" className="font-medium text-emerald-600 hover:underline">
-                  Sign Up
+                  Inscription
                 </Link>
               </p>
             </form>
