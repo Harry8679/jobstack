@@ -101,13 +101,13 @@ const Signup = () => {
                 type="submit"
                 className="w-full py-2 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-md transition duration-150"
               >
-                Register
+                Inscription
               </button>
 
               <p className="text-center text-sm text-gray-600 dark:text-gray-400">
-                Already have an account?{' '}
+                Avez-vous déjà un compte ?{' '}
                 <Link to="/connexion" className="font-medium text-emerald-600 hover:underline">
-                  Sign in
+                  Connexion
                 </Link>
               </p>
             </form>
